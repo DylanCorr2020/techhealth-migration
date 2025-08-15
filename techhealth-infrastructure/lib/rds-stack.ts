@@ -40,7 +40,10 @@ export class RDSStack extends cdk.Stack {
         ec2.InstanceSize.MICRO
       ),
       allocatedStorage: 20,
-      removalPolicy: cdk.RemovalPolicy.DESTROY, //Deletes DB on stack removal
+      //Deletes DB on stack removal
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      //Create a secret in Secrets Manager with the username admin
+      credentials: rds.Credentials.fromGeneratedSecret("admin"),
     });
   }
 }
